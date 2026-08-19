@@ -1,10 +1,11 @@
 # skillman
 
-Keep reusable agent skills in one place. Then add the skills you want to each
-project.
+Find agent skills on [skills.sh](https://skills.sh), keep them in one
+library, and enable or disable the ones you want per project.
 
-`skillman` copies active skills into `.agents/skills/` in your current
-directory. It does not run a background service or keep a database.
+`skillman find` searches the public index. `skillman pull` installs from
+GitHub or any git repo. Active skills are copied into `.agents/skills/`
+in your current directory. There is no background service and no database.
 
 ## What you need
 
@@ -59,6 +60,9 @@ Press `Space` to add or remove the selected skill for the current project.
 
 ### Download skills from a repository
 
+`skillman pull` accepts `owner/repo`, `owner/repo@skill`, a path inside a
+repo, or a git URL.
+
 Download every skill found in a GitHub repository:
 
 ```sh
@@ -68,6 +72,7 @@ skillman pull vercel-labs/agent-skills
 Download one named skill:
 
 ```sh
+skillman pull vercel-labs/agent-skills@frontend-design
 skillman pull juliusbrussee/caveman --skill caveman
 ```
 
@@ -141,7 +146,8 @@ export SKILLMAN_HOME="$HOME/.local/share/skillman"
 
 ## Important details
 
-- `pull owner/repo` means a GitHub repository.
+- `pull owner/repo` means a GitHub repository. `owner/repo@skill` matches
+  `--skill`.
 - With no `--skill` flag, `pull` keeps every skill it finds. Use
   `--skill '*'` for the same result.
 - You can repeat `--skill` to choose several skills.
@@ -156,3 +162,7 @@ export SKILLMAN_HOME="$HOME/.local/share/skillman"
 Skills are instructions and may include scripts or commands. Read skills from
 new sources before using them. `skillman` downloads and copies files; it does
 not review them for safety.
+
+## License
+
+MIT
